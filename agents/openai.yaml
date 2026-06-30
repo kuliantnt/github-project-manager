@@ -1,0 +1,3 @@
+display_name: GitHub Project Manager
+short_description: 通用 GitHub Issue / PR 与 Projects v2 看板管理，面向任意仓库，不碰业务代码。
+default_prompt: 用 github-project-manager 整理当前仓库未关闭 Issue 并同步 Project 看板状态。
