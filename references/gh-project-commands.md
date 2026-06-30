@@ -132,9 +132,12 @@ gh pr    view <num> -R "$REPO" --json title,state,merged,closingIssuesReferences
 ## 9. 父子任务关系（官方关联，优于正文清单）
 
 ```bash
-gh issue edit <child>  -R "$REPO" --add-parent <parent>
+# 设父任务（不存在 --add-parent，设父用 --parent）
+gh issue edit <child>  -R "$REPO" --parent <parent>
+# 反向：在父任务上追加子任务
 gh issue edit <parent> -R "$REPO" --add-sub-issue <child>
-gh issue view <parent> -R "$REPO" --json subIssuesIssues
+# 验证父子关系（字段名为 subIssues，不是 subIssuesIssues）
+gh issue view <parent> -R "$REPO" --json subIssues -q '.subIssues[].number'
 ```
 
 ## 10. 关闭 Issue（需留说明评论）

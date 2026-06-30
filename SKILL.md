@@ -68,7 +68,14 @@ description: 通用 GitHub Issue、Pull Request 与 GitHub Projects v2 看板管
 3. 关闭原因明确为 `completed` / `duplicate` / `not planned`；
 4. 不得静默关闭。
 
-链接父子用官方关联 `gh issue edit --add-parent / --add-sub-issue`，避免在正文堆砌子任务清单。
+链接父子用官方关联（避免在正文堆砌子任务清单）：
+
+```bash
+gh issue edit <child>  -R <repo> --parent <parent-num>    # 设父任务（注意：不存在 --add-parent）
+gh issue edit <parent> -R <repo> --add-sub-issue <child>  # 反向追加子任务
+```
+
+验证父子关系用 `gh issue view <parent> --json subIssues`（字段名为 `subIssues`，不是 `subIssuesIssues`）。
 
 ## C. Projects v2 字段管理（核心：先读真实，再复用）
 
